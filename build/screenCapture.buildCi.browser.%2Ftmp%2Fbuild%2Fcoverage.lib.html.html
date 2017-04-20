@@ -1,0 +1,1102 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-react-masonry-component/node_modules/react-masonry-component/lib/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-react-masonry-component">npmtest-react-masonry-component (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-react-masonry-component/node_modules/react-masonry-component/lib/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">16.67% <small>(16 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">3.7% <small>(2 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">4.35% <small>(1 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">16.67% <small>(16 / 96)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-react-masonry-component/node_modules/react-masonry-component/lib/</a> » index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var isBrowser = typeof window !== 'undefined';
+var Masonry = isBrowser ? <span class="branch-0 cbranch-no" title="branch not covered">window.Masonry || require('masonry-layout') </span>: null;
+var imagesloaded = isBrowser ? <span class="branch-0 cbranch-no" title="branch not covered">require('imagesloaded') </span>: null;
+var assign = require('lodash.assign');
+var elementResizeDetectorMaker = require('element-resize-detector');
+var debounce = require('lodash.debounce');
+var omit = require('lodash.omit');
+var PropTypes = require('prop-types');
+var React = require('react');
+var createReactClass = require('create-react-class');
+var refName = 'masonryContainer';
+&nbsp;
+var propTypes = {
+  enableResizableChildren: PropTypes.bool,
+  disableImagesLoaded: PropTypes.bool,
+  onImagesLoaded: PropTypes.func,
+  updateOnEachImageLoad: PropTypes.bool,
+  options: PropTypes.object,
+  elementType: PropTypes.string,
+  onLayoutComplete: PropTypes.func,
+  onRemoveComplete: PropTypes.func
+};
+&nbsp;
+var MasonryComponent = createReactClass({
+  masonry: false,
+  erd: undefined,
+  latestKnownDomChildren: [],
+  displayName: 'MasonryComponent',
+  propTypes: propTypes,
+&nbsp;
+  getDefaultProps: function() {
+    return {
+      enableResizableChildren: false,
+      disableImagesLoaded: false,
+      updateOnEachImageLoad: false,
+      options: {},
+      className: '',
+      elementType: 'div',
+      onLayoutComplete: <span class="fstat-no" title="function not covered">function() {</span>
+      },
+      onRemoveComplete: <span class="fstat-no" title="function not covered">function() {</span>
+      }
+    };
+  },
+&nbsp;
+  initializeMasonry: <span class="fstat-no" title="function not covered">function(force) {</span>
+<span class="cstat-no" title="statement not covered">    if (!this.masonry || force) {</span>
+<span class="cstat-no" title="statement not covered">      this.masonry = new Masonry(</span>
+        this.refs[refName],
+        this.props.options
+      );
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (this.props.onLayoutComplete) {</span>
+<span class="cstat-no" title="statement not covered">        this.masonry.on('layoutComplete', this.props.onLayoutComplete);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (this.props.onRemoveComplete) {</span>
+<span class="cstat-no" title="statement not covered">        this.masonry.on('removeComplete', this.props.onRemoveComplete);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      this.latestKnownDomChildren = this.getCurrentDomChildren();</span>
+    }
+  },
+&nbsp;
+  getCurrentDomChildren: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    var node = this.refs[refName];</span>
+<span class="cstat-no" title="statement not covered">    var children = this.props.options.itemSelector ? node.querySelectorAll(this.props.options.itemSelector) : node.children;</span>
+<span class="cstat-no" title="statement not covered">    return Array.prototype.slice.call(children);</span>
+  },
+&nbsp;
+  diffDomChildren: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    var forceItemReload = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var knownChildrenStillAttached = this.latestKnownDomChildren.filter(<span class="fstat-no" title="function not covered">function(element) {</span></span>
+      /*
+       * take only elements attached to DOM
+       * (aka the parent is the masonry container, not null)
+       * otherwise masonry would try to "remove it" again from the DOM
+       */
+<span class="cstat-no" title="statement not covered">      return !!element.parentNode;</span>
+    });
+&nbsp;
+    /*
+     * If not all known children are attached to the dom - we have no other way of notifying
+     * masonry to remove the ones not still attached besides invoking a complete item reload.
+     * basically all the rest of the code below does not matter in that case.
+     */
+<span class="cstat-no" title="statement not covered">    if (knownChildrenStillAttached.length !== this.latestKnownDomChildren) {</span>
+<span class="cstat-no" title="statement not covered">      forceItemReload = true;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var currentDomChildren = this.getCurrentDomChildren();</span>
+&nbsp;
+    /*
+     * Since we are looking for a known child which is also attached to the dom AND
+     * not attached to the dom at the same time - this would *always* produce an empty array.
+     */
+<span class="cstat-no" title="statement not covered">    var removed = knownChildrenStillAttached.filter(<span class="fstat-no" title="function not covered">function(attachedKnownChild) {</span></span>
+<span class="cstat-no" title="statement not covered">      return !~currentDomChildren.indexOf(attachedKnownChild);</span>
+    });
+&nbsp;
+    /*
+     * This would get any children which are attached to the dom but are *unkown* to us
+     * from previous renders
+     */
+<span class="cstat-no" title="statement not covered">    var newDomChildren = currentDomChildren.filter(<span class="fstat-no" title="function not covered">function(currentChild) {</span></span>
+<span class="cstat-no" title="statement not covered">      return !~knownChildrenStillAttached.indexOf(currentChild);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var beginningIndex = 0;</span>
+&nbsp;
+    // get everything added to the beginning of the DOMNode list
+<span class="cstat-no" title="statement not covered">    var prepended = newDomChildren.filter(<span class="fstat-no" title="function not covered">function(newChild) {</span></span>
+<span class="cstat-no" title="statement not covered">      var prepend = (beginningIndex === currentDomChildren.indexOf(newChild));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (prepend) {</span>
+        // increase the index
+<span class="cstat-no" title="statement not covered">        beginningIndex++;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      return prepend;</span>
+    });
+&nbsp;
+    // we assume that everything else is appended
+<span class="cstat-no" title="statement not covered">    var appended = newDomChildren.filter(<span class="fstat-no" title="function not covered">function(el) {</span></span>
+<span class="cstat-no" title="statement not covered">      return prepended.indexOf(el) === -1;</span>
+    });
+&nbsp;
+    /*
+     * otherwise we reverse it because so we're going through the list picking off the items that
+     * have been added at the end of the list. this complex logic is preserved in case it needs to be
+     * invoked
+     *
+     * var endingIndex = currentDomChildren.length - 1;
+     *
+     * newDomChildren.reverse().filter(function(newChild, i){
+     *     var append = endingIndex == currentDomChildren.indexOf(newChild);
+     *
+     *     if (append) {
+     *         endingIndex--;
+     *     }
+     *
+     *     return append;
+     * });
+     */
+&nbsp;
+    // get everything added to the end of the DOMNode list
+<span class="cstat-no" title="statement not covered">    var moved = [];</span>
+&nbsp;
+    /*
+     * This would always be true (see above about the lofic for "removed")
+     */
+<span class="cstat-no" title="statement not covered">    if (removed.length === 0) {</span>
+      /*
+       * 'moved' will contain some random elements (if any) since the "knownChildrenStillAttached" is a filter
+       * of the "known" children which are still attached - All indexes could basically change. (for example
+       * if the first element is not attached)
+       * Don't trust this array.
+       */
+<span class="cstat-no" title="statement not covered">      moved = knownChildrenStillAttached.filter(<span class="fstat-no" title="function not covered">function(child, index) {</span></span>
+<span class="cstat-no" title="statement not covered">        return index !== currentDomChildren.indexOf(child);</span>
+      });
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    this.latestKnownDomChildren = currentDomChildren;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return {</span>
+      old: knownChildrenStillAttached, // Not used
+      new: currentDomChildren, // Not used
+      removed: removed,
+      appended: appended,
+      prepended: prepended,
+      moved: moved,
+      forceItemReload: forceItemReload
+    };
+  },
+&nbsp;
+  performLayout: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    var diff = this.diffDomChildren();</span>
+&nbsp;
+    // Would never be true. (see comments of 'diffDomChildren' about 'removed')
+<span class="cstat-no" title="statement not covered">    if (diff.removed.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">      if (this.props.enableResizableChildren) {</span>
+<span class="cstat-no" title="statement not covered">        diff.removed.forEach(this.erd.removeAllListeners, this.erd);</span>
+      }
+<span class="cstat-no" title="statement not covered">      this.masonry.remove(diff.removed);</span>
+<span class="cstat-no" title="statement not covered">      this.masonry.reloadItems();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (diff.appended.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">      this.masonry.appended(diff.appended);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (diff.prepended.length === 0) {</span>
+<span class="cstat-no" title="statement not covered">        this.masonry.reloadItems();</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (this.props.enableResizableChildren) {</span>
+<span class="cstat-no" title="statement not covered">        diff.appended.forEach(this.listenToElementResize, this);</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (diff.prepended.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">      this.masonry.prepended(diff.prepended);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (this.props.enableResizableChildren) {</span>
+<span class="cstat-no" title="statement not covered">        diff.prepended.forEach(this.listenToElementResize, this);</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (diff.forceItemReload || diff.moved.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">      this.masonry.reloadItems();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    this.masonry.layout();</span>
+  },
+&nbsp;
+  imagesLoaded: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    if (this.props.disableImagesLoaded) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    imagesloaded(this.refs[refName])</span>
+      .on(
+        this.props.updateOnEachImageLoad ? 'progress' : 'always',
+        debounce(
+<span class="fstat-no" title="function not covered">          function(instance) {</span>
+<span class="cstat-no" title="statement not covered">            if (this.props.onImagesLoaded) {</span>
+<span class="cstat-no" title="statement not covered">              this.props.onImagesLoaded(instance);</span>
+            }
+<span class="cstat-no" title="statement not covered">            this.masonry.layout();</span>
+          }.bind(this), 100)
+      );
+  },
+&nbsp;
+  initializeResizableChildren: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    if (!this.props.enableResizableChildren) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    this.erd = elementResizeDetectorMaker({</span>
+      strategy: 'scroll'
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered">    this.latestKnownDomChildren.forEach(this.listenToElementResize, this);</span>
+  },
+&nbsp;
+  listenToElementResize: <span class="fstat-no" title="function not covered">function(el) {</span>
+<span class="cstat-no" title="statement not covered">    this.erd.listenTo(el, <span class="fstat-no" title="function not covered">function() {</span></span>
+<span class="cstat-no" title="statement not covered">      this.masonry.layout()</span>
+    }.bind(this))
+  },
+&nbsp;
+  destroyErd: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    if (this.erd) {</span>
+<span class="cstat-no" title="statement not covered">      this.latestKnownDomChildren.forEach(this.erd.uninstall, this.erd);</span>
+    }
+  },
+&nbsp;
+  componentDidMount: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    this.initializeMasonry();</span>
+<span class="cstat-no" title="statement not covered">    this.initializeResizableChildren();</span>
+<span class="cstat-no" title="statement not covered">    this.imagesLoaded();</span>
+  },
+&nbsp;
+  componentDidUpdate: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    this.performLayout();</span>
+<span class="cstat-no" title="statement not covered">    this.imagesLoaded();</span>
+  },
+&nbsp;
+  componentWillUnmount: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    this.destroyErd();</span>
+&nbsp;
+    // unregister events
+<span class="cstat-no" title="statement not covered">    if (this.props.onLayoutComplete) {</span>
+<span class="cstat-no" title="statement not covered">      this.masonry.off('layoutComplete', this.props.onLayoutComplete);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (this.props.onRemoveComplete) {</span>
+<span class="cstat-no" title="statement not covered">      this.masonry.off('removeComplete', this.props.onRemoveComplete);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    this.masonry.destroy();</span>
+  },
+&nbsp;
+  render: <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">    var props = omit(this.props, Object.keys(propTypes));</span>
+<span class="cstat-no" title="statement not covered">    return React.createElement(this.props.elementType, assign({}, props, {ref: refName}), this.props.children);</span>
+  }
+});
+&nbsp;
+module.exports = MasonryComponent;
+module.exports.default = MasonryComponent;
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 20 2017 15:19:41 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
